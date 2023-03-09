@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:tax/pages/print.dart';
 
 class Second extends StatefulWidget {
   const Second({super.key});
@@ -227,7 +228,8 @@ class _SecondState extends State<Second> {
                                     employees.removeAt(i);
                                   });
                                 },
-                                icon: const Icon(Icons.delete, size: 20, color: Colors.red),
+                                icon: const Icon(Icons.delete,
+                                    size: 20, color: Colors.red),
                               ),
                             ),
                           ],
@@ -285,10 +287,11 @@ class _SecondState extends State<Second> {
                                 primary: Colors.green,
                               ),
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) => const Second()),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const PrintData()),
+                                );
                               },
                               icon: const Icon(Icons.print),
                               label: const Text('Print Bill'),
