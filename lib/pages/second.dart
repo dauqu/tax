@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:tax/pages/print.dart';
 
@@ -12,11 +11,9 @@ class Second extends StatefulWidget {
 }
 
 class _SecondState extends State<Second> {
-
-  
   List<Employee> employees = <Employee>[];
 
-  late EmployeeDataSource employeeDataSource;
+  // late EmployeeDataSource employeeDataSource;
 
   //List view controller
   final ScrollController _scrollController = ScrollController();
@@ -34,13 +31,13 @@ class _SecondState extends State<Second> {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // employees = getEmployeeData();
-    employeeDataSource = EmployeeDataSource(employeeData: employees);
-    player = AudioPlayer();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // employees = getEmployeeData();
+  //   employeeDataSource = EmployeeDataSource(employeeData: employees);
+  //   player = AudioPlayer();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -293,7 +290,8 @@ class _SecondState extends State<Second> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>  PrintData(items: employees)),
+                                      builder: (context) =>
+                                          PrintData(items: employees)),
                                 );
                               },
                               icon: const Icon(Icons.print),
@@ -475,34 +473,34 @@ class Employee {
 
 /// An object to set the employee collection data source to the datagrid. This
 /// is used to map the employee data to the datagrid widget.
-class EmployeeDataSource extends DataGridSource {
-  /// Creates the employee data source class with required details.
-  EmployeeDataSource({required List<Employee> employeeData}) {
-    _employeeData = employeeData
-        .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'id', value: e.id),
-              DataGridCell<String>(columnName: 'Item', value: e.items),
-              DataGridCell<int>(columnName: 'Price', value: e.price),
-              DataGridCell<int>(columnName: 'Quantity', value: e.quantity),
-            ]))
-        .toList();
-  }
+// class EmployeeDataSource extends DataGridSource {
+//   /// Creates the employee data source class with required details.
+//   EmployeeDataSource({required List<Employee> employeeData}) {
+//     _employeeData = employeeData
+//         .map<DataGridRow>((e) => DataGridRow(cells: [
+//               DataGridCell<int>(columnName: 'id', value: e.id),
+//               DataGridCell<String>(columnName: 'Item', value: e.items),
+//               DataGridCell<int>(columnName: 'Price', value: e.price),
+//               DataGridCell<int>(columnName: 'Quantity', value: e.quantity),
+//             ]))
+//         .toList();
+//   }
 
-  List<DataGridRow> _employeeData = [];
+//   List<DataGridRow> _employeeData = [];
 
-  @override
-  List<DataGridRow> get rows => _employeeData;
+//   @override
+//   List<DataGridRow> get rows => _employeeData;
 
-  @override
-  DataGridRowAdapter buildRow(DataGridRow row) {
-    return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((e) {
-      return Container(
-        //Left align
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.all(5),
-        child: Text(e.value.toString()),
-      );
-    }).toList());
-  }
-}
+//   @override
+//   DataGridRowAdapter buildRow(DataGridRow row) {
+//     return DataGridRowAdapter(
+//         cells: row.getCells().map<Widget>((e) {
+//       return Container(
+//         //Left align
+//         alignment: Alignment.centerLeft,
+//         padding: const EdgeInsets.all(5),
+//         child: Text(e.value.toString()),
+//       );
+//     }).toList());
+//   }
+// }
