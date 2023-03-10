@@ -12,7 +12,10 @@ class Second extends StatefulWidget {
 }
 
 class _SecondState extends State<Second> {
+
+  
   List<Employee> employees = <Employee>[];
+
   late EmployeeDataSource employeeDataSource;
 
   //List view controller
@@ -290,7 +293,7 @@ class _SecondState extends State<Second> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const PrintData()),
+                                      builder: (context) =>  PrintData(items: employees)),
                                 );
                               },
                               icon: const Icon(Icons.print),
