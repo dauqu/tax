@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Hello World'),
+            Text('Welcome to EMI Calculator'),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
                   MaterialPageRoute(builder: (context) => const Second()),
                 );
               },
-              child: const Text('Go to Second Page'),
+              child: const Text('Open App'),
             ),
           ],
         ),
