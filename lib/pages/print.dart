@@ -15,8 +15,6 @@ class PrintData extends StatefulWidget {
 }
 
 class _PrintDataState extends State<PrintData> {
-
-  
   Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
     final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
 

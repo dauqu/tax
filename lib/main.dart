@@ -1,53 +1,51 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:tax/pages/second.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
-void main() {
-  runApp(const MyApp());
+class PrintData extends StatefulWidget {
+  const PrintData({super.key});
+
+  @override
+  State<PrintData> createState() => _PrintDataState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _PrintDataState extends State<PrintData> {
+  Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
+    final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const Home());
+    pdf.addPage(
+      pw.Page(
+        pageFormat: format,
+        build: (context) {
+          return pw.ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return pw.Column(
+                children: [
+                  pw.Text("Hello World"),
+                  pw.Text("Hello World"),
+                ],
+              );
+            },
+          );
+        },
+      ),
+    );
+
+    return pdf.save();
   }
-}
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Hello World'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Second()),
-                );
-              },
-              child: const Text('Go to Second Page'),
-            ),
-          ],
-        ),
+      appBar: AppBar(elevation: 0, title: const Text("Printing")),
+      body: PdfPreview(
+        build: (format) => _generatePdf(format, "title"),
       ),
     );
   }

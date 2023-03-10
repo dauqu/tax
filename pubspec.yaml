@@ -38,6 +38,7 @@ dependencies:
   syncfusion_flutter_datagrid: ^20.4.52
   printing: ^5.10.1
   just_audio: ^0.9.13
+  flutter_html: ^0.11.1
 
 dev_dependencies:
   flutter_test:
