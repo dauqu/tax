@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome to EMI Calculator'),
+            const Text('Welcome to EMI Calculator'),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

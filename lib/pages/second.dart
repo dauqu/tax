@@ -31,14 +31,6 @@ class _SecondState extends State<Second> {
     super.dispose();
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // employees = getEmployeeData();
-  //   employeeDataSource = EmployeeDataSource(employeeData: employees);
-  //   player = AudioPlayer();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +51,7 @@ class _SecondState extends State<Second> {
                   padding: const EdgeInsets.all(5),
                   child: Table(
                     border: TableBorder.all(
-                      color: Colors.white,
+                      color: Colors.black,
                       style: BorderStyle.solid,
                       width: 1,
                     ),
@@ -74,6 +66,14 @@ class _SecondState extends State<Second> {
                           ),
                         ),
                         children: [
+                          Container(
+                            height: 40,
+                            padding: const EdgeInsets.all(5),
+                            color: Colors.blue,
+                            alignment: Alignment.centerLeft,
+                            child: const Text('S.No',
+                                style: TextStyle(color: Colors.white)),
+                          ),
                           Container(
                             height: 40,
                             padding: const EdgeInsets.all(5),
@@ -122,12 +122,20 @@ class _SecondState extends State<Second> {
                             shape: BoxShape.rectangle,
                             border: Border(
                               bottom: BorderSide(
-                                color: Colors.white,
+                                color: Colors.black,
                                 width: 1,
                               ),
                             ),
                           ),
                           children: [
+                            Container(
+                              width: 200,
+                              height: 40,
+                              alignment: Alignment.centerLeft,
+                              padding: const EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: Text((i + 1).toString()),
+                            ),
                             Container(
                               width: 200,
                               height: 40,
@@ -362,35 +370,6 @@ class _SecondState extends State<Second> {
       ),
     );
   }
-
-  // List<Employee> getEmployeeData() {
-  //   return [
-  //     Employee(
-  //         1,
-  //         'Lorem Ipsum is simply dummy text of the printing and typesetting',
-  //         556,
-  //         1),
-  //     Employee(2, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 3),
-  //     Employee(3, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 5654, 4),
-  //     Employee(4, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 6),
-  //     Employee(5, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 2),
-  //     Employee(6, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 45654, 5),
-  //     Employee(7, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 2),
-  //     Employee(8, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 1),
-  //     Employee(9, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 1),
-  //     Employee(10, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 1),
-  //     Employee(11, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 6),
-  //     Employee(12, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 33),
-  //     Employee(13, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 24),
-  //     Employee(14, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 13),
-  //     Employee(15, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 2),
-  //     Employee(16, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 3),
-  //     Employee(17, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 546, 4),
-  //     Employee(18, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 2),
-  //     Employee(19, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 3),
-  //     Employee(20, 'Lorem Ipsum is simply dummy text of the printing and typesetting', 456, 2)
-  //   ];
-  // }
 }
 
 /// Custom business object class which contains properties to hold the detailed
@@ -411,37 +390,3 @@ class Employee {
   /// Salary of an employee.
   final int quantity;
 }
-
-/// An object to set the employee collection data source to the datagrid. This
-/// is used to map the employee data to the datagrid widget.
-// class EmployeeDataSource extends DataGridSource {
-//   /// Creates the employee data source class with required details.
-//   EmployeeDataSource({required List<Employee> employeeData}) {
-//     _employeeData = employeeData
-//         .map<DataGridRow>((e) => DataGridRow(cells: [
-//               DataGridCell<int>(columnName: 'id', value: e.id),
-//               DataGridCell<String>(columnName: 'Item', value: e.items),
-//               DataGridCell<int>(columnName: 'Price', value: e.price),
-//               DataGridCell<int>(columnName: 'Quantity', value: e.quantity),
-//             ]))
-//         .toList();
-//   }
-
-//   List<DataGridRow> _employeeData = [];
-
-//   @override
-//   List<DataGridRow> get rows => _employeeData;
-
-//   @override
-//   DataGridRowAdapter buildRow(DataGridRow row) {
-//     return DataGridRowAdapter(
-//         cells: row.getCells().map<Widget>((e) {
-//       return Container(
-//         //Left align
-//         alignment: Alignment.centerLeft,
-//         padding: const EdgeInsets.all(5),
-//         child: Text(e.value.toString()),
-//       );
-//     }).toList());
-//   }
-// }
