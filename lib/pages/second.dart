@@ -48,65 +48,6 @@ class _SecondState extends State<Second> {
           children: [
             Expanded(
               flex: 4,
-              // child: SfDataGrid(
-              //   allowPullToRefresh: true,
-              //   source: employeeDataSource,
-              //   allowSwiping: true,
-              //   checkboxShape: const RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.all(Radius.circular(5)),
-              //   ),
-              //   columns: <GridColumn>[
-              //     GridColumn(
-              //       columnName: 'id',
-              //       label: const Text('Item ID'),
-              //       width: 100,
-              //     ),
-              //     GridColumn(
-              //       columnName: 'name',
-              //       label: const Text('Item Name'),
-              //       //40%
-              //       width: MediaQuery.of(context).size.width * 0.4,
-              //     ),
-              //     GridColumn(
-              //       columnName: 'price',
-              //       label: const Text('Price'),
-              //       width: 100,
-              //     ),
-              //     GridColumn(
-              //       columnName: 'quantity',
-              //       label: const Text('Quantity'),
-              //       width: 100,
-              //     ),
-              //   ],
-              // ),
-              //Table View
-              // child: ListView.builder(
-              //   //Scroll to bottom
-              //   controller: _scrollController,
-              //   itemCount: employees.length,
-              //   itemBuilder: (context, index) {
-              //     return Dismissible(
-              //       background: Container(
-              //         color: Colors.red,
-              //         child: const Icon(Icons.delete),
-              //       ),
-              //       key: Key(employees[index].id.toString()),
-              //       onDismissed: (direction) {
-              //         setState(() {
-              //           employees.removeAt(index);
-              //         });
-              //       },
-              //       child: ListTile(
-              //         dense: true,
-              //         tileColor: Colors.grey[200],
-              //         leading: const Icon(Icons.inventory_sharp),
-              //         title: Text(employees[index].items),
-              //         subtitle: Text(employees[index].price.toString()),
-              //         trailing: Text(employees[index].quantity.toString()),
-              //       ),
-              //     );
-              //   },
-              // ),
               //Table
               child: Container(
                 //Full screen

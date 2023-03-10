@@ -30,23 +30,65 @@ class _PrintDataState extends State<PrintData> {
                     style: const pw.TextStyle(fontSize: 20)),
               ),
               pw.SizedBox(height: 50),
-              pw.Container(
-                height: 50,
-                child: pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+
+              pw.Table(children: [
+                pw.TableRow(
+                  decoration: const pw.BoxDecoration(
+                    shape: pw.BoxShape.rectangle,
+                    border: pw.Border(
+                      bottom: pw.BorderSide(
+                        color: PdfColors.black,
+                        width: 1,
+                      ),
+                    ),
+                  ),
                   children: [
-                    pw.Text("Item No"),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text("S.No"),
+                    ),
                     pw.SizedBox(width: 10),
-                    pw.Text("Item Name"),
-                    pw.SizedBox(width: 10),
-                    pw.Text("Price"),
-                    pw.SizedBox(width: 10),
-                    pw.Text("Quantity"),
-                    pw.SizedBox(width: 10),
-                    pw.Text("Amount"),
+                    // pw.Text(widget.items[index].items),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text("Item Name"),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text("Price"),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text("Quantity"),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text("Total Amount"),
+                    ),
                   ],
                 ),
-              ),
+              ]),
+
               pw.ListView.builder(
                 itemCount: widget.items.length,
                 itemBuilder: (context, index) {
@@ -61,42 +103,169 @@ class _PrintDataState extends State<PrintData> {
                       ),
                     ),
                     height: 50,
-                    child: pw.Row(
-                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    child: pw.Table(
                       children: [
-                        pw.Text("$index"),
-                        pw.SizedBox(width: 10),
-                        pw.Text("$index"),
-                        pw.SizedBox(width: 10),
-                        pw.Text("$index"),
-                        pw.SizedBox(width: 10),
-                        pw.Text("$index"),
-                        pw.SizedBox(width: 10),
-                        pw.Text("$index"),
+                        pw.TableRow(
+                          decoration: const pw.BoxDecoration(
+                            shape: pw.BoxShape.rectangle,
+                            border: pw.Border(
+                              bottom: pw.BorderSide(
+                                color: PdfColors.black,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          children: [
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: pw.Text((index + 1).toString()),
+                            ),
+                            pw.SizedBox(width: 10),
+                            // pw.Text(widget.items[index].items),
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: pw.Text(widget.items[index].items),
+                            ),
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child:
+                                  pw.Text(widget.items[index].price.toString()),
+                            ),
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: pw.Text(
+                                  widget.items[index].quantity.toString()),
+                            ),
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: pw.Text((widget.items[index].price *
+                                      widget.items[index].quantity)
+                                  .toString()),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   );
                 },
               ),
 
+              pw.SizedBox(height: 50),
+
               //Total
-              pw.Container(
-                height: 50,
-                child: pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              pw.Table(children: [
+                pw.TableRow(
+                  decoration: const pw.BoxDecoration(
+                    shape: pw.BoxShape.rectangle,
+                    border: pw.Border(
+                      bottom: pw.BorderSide(
+                        color: PdfColors.black,
+                        width: 1,
+                      ),
+                    ),
+                  ),
                   children: [
-                    pw.Text(""),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text(widget.items.length.toString()),
+                    ),
                     pw.SizedBox(width: 10),
-                    pw.Text(""),
-                    pw.SizedBox(width: 10),
-                    pw.Text("677"),
-                    pw.SizedBox(width: 10),
-                    pw.Text("44"),
-                    pw.SizedBox(width: 10),
-                    pw.Text("456"),
+                    // pw.Text(widget.items[index].items),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text(".............."),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text(widget.items
+                          .map((e) => e.price)
+                          .reduce((value, element) => value + element)
+                          .toString()),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text(widget.items
+                          .map((e) => e.quantity)
+                          .reduce((value, element) => value + element)
+                          .toString()),
+                    ),
+                    pw.Container(
+                      width: 200,
+                      height: 40,
+                      alignment: pw.Alignment.centerLeft,
+                      padding: const pw.EdgeInsets.all(5),
+                      // color: Colors.grey[200],
+                      child: pw.Text(widget.items
+                          .map((e) => e.price * e.quantity)
+                          .reduce((value, element) => value + element)
+                          .toString()),
+                    ),
                   ],
                 ),
-              ),
+              ]),
+              //Total
+              // pw.Container(
+              //   height: 50,
+              //   child: pw.Row(
+              //     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       pw.Text(widget.items.length.toString()),
+              //       pw.SizedBox(width: 10),
+              //       pw.Text("................."),
+              //       pw.SizedBox(width: 10),
+              //       pw.Text(widget.items
+              //           .map((e) => e.price * e.quantity)
+              //           .reduce((value, element) => value + element)
+              //           .toString()),
+              //       pw.SizedBox(width: 10),
+              //       pw.Text(widget.items
+              //           .map((e) => e.quantity)
+              //           .reduce((value, element) => value + element)
+              //           .toString()),
+              //       pw.SizedBox(width: 10),
+              //       pw.Text(widget.items
+              //           .map((e) => e.price * e.quantity)
+              //           .reduce((value, element) => value + element)
+              //           .toString()),
+              //     ],
+              //   ),
+              // ),
             ],
           );
         },
