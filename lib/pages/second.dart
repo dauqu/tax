@@ -23,6 +23,11 @@ class _SecondState extends State<Second> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
 
+  final TextEditingController _updateItemController = TextEditingController();
+  final TextEditingController _updatePriceController = TextEditingController();
+  final TextEditingController _updateQuantityController =
+      TextEditingController();
+
   late AudioPlayer player;
 
   @override
@@ -168,19 +173,101 @@ class _SecondState extends State<Second> {
                                       .toString()),
                             ),
                             Container(
-                              // color: Colors.grey[200],
-                              child: IconButton(
-                                splashRadius: 10,
-                                padding: const EdgeInsets.all(0),
-                                onPressed: () {
-                                  setState(() {
-                                    employees.removeAt(i);
-                                  });
-                                },
-                                icon: const Icon(Icons.delete,
-                                    size: 20, color: Colors.red),
-                              ),
-                            ),
+                                // color: Colors.grey[200],
+                                child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                IconButton(
+                                  splashRadius: 10,
+                                  padding: const EdgeInsets.all(0),
+                                  onPressed: () {
+                                    setState(() {
+                                      employees.removeAt(i);
+                                    });
+                                  },
+                                  icon: const Icon(Icons.delete,
+                                      size: 20, color: Colors.red),
+                                ),
+                                IconButton(
+                                  splashRadius: 10,
+                                  padding: const EdgeInsets.all(0),
+                                  onPressed: () {
+                                    _itemController.text = employees[i].items;
+                                    _priceController.text =
+                                        employees[i].price.toString();
+                                    _quantityController.text =
+                                        employees[i].quantity.toString();
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: const Text('Edit'),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                TextField(
+                                                  controller:
+                                                      _updateItemController,
+                                                  decoration:
+                                                      const InputDecoration(
+                                                          labelText:
+                                                              'Item Name'),
+                                                ),
+                                                TextField(
+                                                  controller:
+                                                      _updatePriceController,
+                                                  decoration:
+                                                      const InputDecoration(
+                                                          labelText: 'Price'),
+                                                ),
+                                                TextField(
+                                                  controller:
+                                                      _updateQuantityController,
+                                                  decoration:
+                                                      const InputDecoration(
+                                                          labelText:
+                                                              'Quantity'),
+                                                ),
+                                              ],
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    //Update employees item name on current index
+                                                    employees[i].items =
+                                                        _updateItemController
+                                                            .text;
+                                                    //Update employees price on current index
+                                                    employees[i].price =
+                                                        double.parse(
+                                                            _updatePriceController
+                                                                .text) as int;
+                                                    //Update employees quantity on current index
+                                                    employees[i].quantity =
+                                                        int.parse(
+                                                            _updateQuantityController
+                                                                .text);
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text('Update'),
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  icon: const Icon(Icons.edit,
+                                      size: 20, color: Colors.blue),
+                                ),
+                              ],
+                            )),
                           ],
                         ),
                     ],
@@ -251,9 +338,7 @@ class _SecondState extends State<Second> {
                                 elevation: 0,
                                 primary: Colors.blue,
                               ),
-                              onPressed: () {
-                                //Download bill txt file
-                              },
+                              onPressed: () {},
                               icon: const Icon(Icons.save),
                               label: const Text('Save Bill'),
                             ),
@@ -382,11 +467,11 @@ class Employee {
   final int id;
 
   /// Name of an employee.
-  final String items;
+  late final String items;
 
   /// Designation of an employee.
-  final int price;
+  late final int price;
 
   /// Salary of an employee.
-  final int quantity;
+  late final int quantity;
 }
