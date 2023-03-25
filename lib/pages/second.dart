@@ -28,7 +28,11 @@ class _SecondState extends State<Second> {
   final TextEditingController _updateQuantityController =
       TextEditingController();
 
-  late AudioPlayer player;
+  AudioPlayer player = AudioPlayer();
+
+  initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -192,11 +196,14 @@ class _SecondState extends State<Second> {
                                   splashRadius: 10,
                                   padding: const EdgeInsets.all(0),
                                   onPressed: () {
-                                    _itemController.text = employees[i].items;
-                                    _priceController.text =
-                                        employees[i].price.toString();
-                                    _quantityController.text =
-                                        employees[i].quantity.toString();
+                                    setState(() {
+                                      _updateItemController.text =
+                                          employees[i].items;
+                                      _updatePriceController.text =
+                                          employees[i].price.toString();
+                                      _updateQuantityController.text =
+                                          employees[i].quantity.toString();
+                                    });
                                     showDialog(
                                         context: context,
                                         builder: (context) {
@@ -239,23 +246,20 @@ class _SecondState extends State<Second> {
                                               ),
                                               TextButton(
                                                 onPressed: () {
+                                                  Navigator.pop(context);
                                                   setState(() {
-                                                    //Update employees item name on current index
                                                     employees[i].items =
                                                         _updateItemController
                                                             .text;
-                                                    //Update employees price on current index
                                                     employees[i].price =
-                                                        double.parse(
+                                                        int.parse(
                                                             _updatePriceController
-                                                                .text) as int;
-                                                    //Update employees quantity on current index
+                                                                .text);
                                                     employees[i].quantity =
                                                         int.parse(
                                                             _updateQuantityController
                                                                 .text);
                                                   });
-                                                  Navigator.pop(context);
                                                 },
                                                 child: const Text('Update'),
                                               ),
@@ -320,7 +324,7 @@ class _SecondState extends State<Second> {
                             leading: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
-                                primary: Colors.green,
+                                backgroundColor: Colors.green,
                               ),
                               onPressed: () {
                                 Navigator.push(
@@ -336,7 +340,7 @@ class _SecondState extends State<Second> {
                             title: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
-                                primary: Colors.blue,
+                                backgroundColor: Colors.blue,
                               ),
                               onPressed: () {},
                               icon: const Icon(Icons.save),
@@ -345,7 +349,7 @@ class _SecondState extends State<Second> {
                             trailing: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
-                                primary: Colors.red,
+                                backgroundColor: Colors.red,
                               ),
                               onPressed: () {
                                 //Clear all items
@@ -430,6 +434,13 @@ class _SecondState extends State<Second> {
                                         int.parse(_quantityController.text)));
                                   });
 
+                                  setState(() {
+                                    //Clear text field
+                                    _itemController.clear();
+                                    _priceController.clear();
+                                    _quantityController.clear();
+                                  });
+
                                   //Scroll to bottom
                                   _scrollController.animateTo(
                                     _scrollController.position.maxScrollExtent,
@@ -439,7 +450,7 @@ class _SecondState extends State<Second> {
 
                                   await player
                                       .setAsset('assets/music/stop-13692.mp3');
-                                  player.play();
+                                  await player.play();
                                 },
                                 child: const Text('Submit'),
                               )),
@@ -467,11 +478,11 @@ class Employee {
   final int id;
 
   /// Name of an employee.
-  late final String items;
+  late String items;
 
   /// Designation of an employee.
-  late final int price;
+  late int price;
 
   /// Salary of an employee.
-  late final int quantity;
+  late int quantity;
 }
