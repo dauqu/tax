@@ -30,6 +30,33 @@ class _SecondState extends State<Second> {
 
   AudioPlayer player = AudioPlayer();
 
+  final FocusNode _itmFNode = FocusNode();
+  final FocusNode _updateitmFNode = FocusNode();
+
+  Future addList() async {
+    setState(() {
+      employees.add(Employee(
+          employees.length + 1,
+          _itemController.text,
+          int.parse(_priceController.text),
+          int.parse(_quantityController.text)));
+    });
+
+    setState(() {
+      //Clear text field
+      _itemController.clear();
+      _priceController.clear();
+      _quantityController.clear();
+    });
+
+    //Scroll to bottom
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 100),
+      curve: Curves.easeOut,
+    );
+  }
+
   initState() {
     super.initState();
   }
@@ -215,6 +242,9 @@ class _SecondState extends State<Second> {
                                                 TextField(
                                                   controller:
                                                       _updateItemController,
+                                                  focusNode: _updateitmFNode,
+                                                  textInputAction:
+                                                      TextInputAction.next,
                                                   decoration:
                                                       const InputDecoration(
                                                           labelText:
@@ -223,6 +253,8 @@ class _SecondState extends State<Second> {
                                                 TextField(
                                                   controller:
                                                       _updatePriceController,
+                                                  textInputAction:
+                                                      TextInputAction.next,
                                                   decoration:
                                                       const InputDecoration(
                                                           labelText: 'Price'),
@@ -230,6 +262,25 @@ class _SecondState extends State<Second> {
                                                 TextField(
                                                   controller:
                                                       _updateQuantityController,
+                                                  onSubmitted: (value) {
+                                                    Navigator.pop(context);
+                                                    setState(() {
+                                                      employees[i].items =
+                                                          _updateItemController
+                                                              .text;
+                                                      employees[i].price =
+                                                          int.parse(
+                                                              _updatePriceController
+                                                                  .text);
+                                                      employees[i].quantity =
+                                                          int.parse(
+                                                              _updateQuantityController
+                                                                  .text);
+                                                    });
+                                                    FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _updateitmFNode);
+                                                  },
                                                   decoration:
                                                       const InputDecoration(
                                                           labelText:
@@ -367,7 +418,10 @@ class _SecondState extends State<Second> {
                         children: [
                           SizedBox(
                             child: TextField(
+                              // on press enter move to next
                               controller: _itemController,
+                              focusNode: _itmFNode,
+                              textInputAction: TextInputAction.next,
                               maxLines: 5,
                               decoration: InputDecoration(
                                 filled: true,
@@ -385,6 +439,7 @@ class _SecondState extends State<Second> {
                           SizedBox(
                             child: TextField(
                               controller: _priceController,
+                              textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
                               //Filder string allow only numbers
                               inputFormatters: <TextInputFormatter>[
@@ -406,6 +461,10 @@ class _SecondState extends State<Second> {
                           SizedBox(
                             child: TextField(
                               controller: _quantityController,
+                              onSubmitted: (value) {
+                                addList();
+                                FocusScope.of(context).requestFocus(_itmFNode);
+                              },
                               keyboardType: TextInputType.number,
                               //Filder string allow only numbers
                               inputFormatters: <TextInputFormatter>[
@@ -424,33 +483,8 @@ class _SecondState extends State<Second> {
                               //Full width
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () async {
-                                  //Add new item to list
-                                  setState(() {
-                                    employees.add(Employee(
-                                        employees.length + 1,
-                                        _itemController.text,
-                                        int.parse(_priceController.text),
-                                        int.parse(_quantityController.text)));
-                                  });
-
-                                  setState(() {
-                                    //Clear text field
-                                    _itemController.clear();
-                                    _priceController.clear();
-                                    _quantityController.clear();
-                                  });
-
-                                  //Scroll to bottom
-                                  _scrollController.animateTo(
-                                    _scrollController.position.maxScrollExtent,
-                                    duration: const Duration(milliseconds: 100),
-                                    curve: Curves.easeOut,
-                                  );
-
-                                  await player
-                                      .setAsset('assets/music/stop-13692.mp3');
-                                  await player.play();
+                                onPressed: () {
+                                  addList();
                                 },
                                 child: const Text('Submit'),
                               )),
