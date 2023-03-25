@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+// ignore: depend_on_referenced_packages
 import 'package:pdf/pdf.dart';
+// ignore: depend_on_referenced_packages
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:tax/pages/second.dart';
 
 class PrintData extends StatefulWidget {
   final List items;
@@ -280,6 +280,13 @@ class _PrintDataState extends State<PrintData> {
     return Scaffold(
       appBar: AppBar(elevation: 0, title: const Text("Printing")),
       body: PdfPreview(
+        pdfFileName: "Item-TxnData.pdf",
+        initialPageFormat: PdfPageFormat.a3,
+        pageFormats: const {
+          "A3": PdfPageFormat.a3,
+          "Letter": PdfPageFormat.letter,
+          "A4": PdfPageFormat.a4,
+        },
         build: (format) => _generatePdf(format, "title"),
       ),
     );
