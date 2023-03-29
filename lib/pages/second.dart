@@ -204,25 +204,42 @@ class _SecondState extends State<Second> {
                                       .toString()),
                             ),
                             Container(
-                                // color: Colors.grey[200],
+                              padding: const EdgeInsets.all(10),
                                 child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                IconButton(
-                                  splashRadius: 10,
-                                  padding: const EdgeInsets.all(0),
-                                  onPressed: () {
+                                // IconButton(
+                                //   autofocus: false,
+                                //   splashRadius: 10,
+                                //   padding: const EdgeInsets.all(0),
+                                //   onPressed: () {
+                                //     setState(() {
+                                //       employees.removeAt(i);
+                                //     });
+                                //   },
+                                //   icon: const Icon(Icons.delete,
+                                //       size: 20, color: Colors.red),
+                                // ),
+                                GestureDetector(
+                                  onTap: () {
                                     setState(() {
                                       employees.removeAt(i);
                                     });
                                   },
-                                  icon: const Icon(Icons.delete,
-                                      size: 20, color: Colors.red),
+                                  child: const Icon(
+                                    Icons.delete,
+                                    size: 20,
+                                    color: Colors.red,
+                                  ),
                                 ),
-                                IconButton(
-                                  splashRadius: 10,
-                                  padding: const EdgeInsets.all(0),
-                                  onPressed: () {
+                                GestureDetector(
+                                  child: const Icon(
+                                    Icons.edit,
+                                    size: 20,
+                                    color: Colors.blue,
+                                  ),
+                                  onTap: () {
                                     setState(() {
                                       _updateItemController.text =
                                           employees[i].items;
@@ -318,8 +335,6 @@ class _SecondState extends State<Second> {
                                           );
                                         });
                                   },
-                                  icon: const Icon(Icons.edit,
-                                      size: 20, color: Colors.blue),
                                 ),
                               ],
                             )),
@@ -414,81 +429,87 @@ class _SecondState extends State<Second> {
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            child: TextField(
-                              // on press enter move to next
-                              controller: _itemController,
-                              focusNode: _itmFNode,
-                              textInputAction: TextInputAction.next,
-                              maxLines: 5,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey.shade200,
-                                hintText: 'Item Name',
-                                //Hide border
-                                border: InputBorder.none,
+                      //Harsha
+                      Form(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              child: TextFormField(
+                                autofocus: true,
+                                // on press enter move to next
+                                controller: _itemController,
+                                focusNode: _itmFNode,
+                                textInputAction: TextInputAction.next,
+                                maxLines: 5,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey.shade200,
+                                  hintText: 'Item Name',
+                                  //Hide border
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
-                          ),
-                          //Divider
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          SizedBox(
-                            child: TextField(
-                              controller: _priceController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.number,
-                              //Filder string allow only numbers
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey.shade200,
-                                hintText: 'Price',
-                                //Hide border
-                                border: InputBorder.none,
+                            //Divider
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                autofocus: true,
+                                controller: _priceController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                //Filder string allow only numbers
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey.shade200,
+                                  hintText: 'Price',
+                                  //Hide border
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
-                          ),
-                          //Divider
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          SizedBox(
-                            child: TextField(
-                              controller: _quantityController,
-                              onSubmitted: (value) {
-                                addList();
-                                FocusScope.of(context).requestFocus(_itmFNode);
-                              },
-                              keyboardType: TextInputType.number,
-                              //Filder string allow only numbers
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey.shade200,
-                                hintText: 'Quantity',
-                                //Hide border
-                                border: InputBorder.none,
-                              ),
+                            //Divider
+                            const SizedBox(
+                              height: 5,
                             ),
-                          ),
-                          SizedBox(
-                              //Full width
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
+                            SizedBox(
+                              child: TextFormField(
+                                autofocus: true,
+                                controller: _quantityController,
+                                onFieldSubmitted: (value) {
                                   addList();
+                                  FocusScope.of(context).requestFocus(_itmFNode);
                                 },
-                                child: const Text('Submit'),
-                              )),
-                        ],
+                                keyboardType: TextInputType.number,
+                                //Filder string allow only numbers
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey.shade200,
+                                  hintText: 'Quantity',
+                                  //Hide border
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                //Full width
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    addList();
+                                  },
+                                  child: const Text('Submit'),
+                                )),
+                          ],
+                        ),
                       ),
                     ],
                   ),
