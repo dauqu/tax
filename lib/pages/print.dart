@@ -186,28 +186,28 @@ class _PrintDataState extends State<PrintData> {
                   ),
                   children: [
                     pw.Container(
-                      width: 200,
-                      height: 40,
+                      // width: 200,
+                      // height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(widget.items.length.toString()),
                     ),
                     pw.SizedBox(width: 10),
                     // pw.Text(widget.items[index].items),
                     pw.Container(
-                      width: 200,
-                      height: 40,
+                      // width: 200,
+                      // height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(".............."),
                     ),
                     pw.Container(
-                      width: 200,
-                      height: 40,
+                      // width: 200,
+                      // height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(widget.items
                           .map((e) => e.price)
@@ -215,10 +215,10 @@ class _PrintDataState extends State<PrintData> {
                           .toString()),
                     ),
                     pw.Container(
-                      width: 200,
-                      height: 40,
+                      // width: 200,
+                      // height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(widget.items
                           .map((e) => e.quantity)
@@ -226,10 +226,10 @@ class _PrintDataState extends State<PrintData> {
                           .toString()),
                     ),
                     pw.Container(
-                      width: 200,
-                      height: 40,
+                      // width: 200,
+                      // height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(widget.items
                           .map((e) => e.price * e.quantity)
