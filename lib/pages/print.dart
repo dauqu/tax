@@ -47,7 +47,7 @@ class _PrintDataState extends State<PrintData> {
                       width: 200,
                       height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text("S.No"),
                     ),
@@ -57,7 +57,7 @@ class _PrintDataState extends State<PrintData> {
                       width: 200,
                       height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text("Item Name"),
                     ),
@@ -65,7 +65,7 @@ class _PrintDataState extends State<PrintData> {
                       width: 200,
                       height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text("Price"),
                     ),
@@ -73,7 +73,7 @@ class _PrintDataState extends State<PrintData> {
                       width: 200,
                       height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text("Quantity"),
                     ),
@@ -81,7 +81,7 @@ class _PrintDataState extends State<PrintData> {
                       width: 200,
                       height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      padding: const pw.EdgeInsets.all(5),
+                      // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text("Total Amount"),
                     ),
@@ -120,9 +120,10 @@ class _PrintDataState extends State<PrintData> {
                               width: 200,
                               height: 40,
                               alignment: pw.Alignment.centerLeft,
-                              padding: const pw.EdgeInsets.all(5),
+                              // padding: const pw.EdgeInsets.all(5),
                               // color: Colors.grey[200],
-                              child: pw.Text((index + 1).toString()),
+                              child: pw.Text((index + 1).toString(),
+                                  style: const pw.TextStyle(fontSize: 15)),
                             ),
                             pw.SizedBox(width: 10),
                             // pw.Text(widget.items[index].items),
@@ -130,7 +131,7 @@ class _PrintDataState extends State<PrintData> {
                               width: 200,
                               height: 40,
                               alignment: pw.Alignment.centerLeft,
-                              padding: const pw.EdgeInsets.all(5),
+                              // padding: const pw.EdgeInsets.all(5),
                               // color: Colors.grey[200],
                               child: pw.Text(widget.items[index].items),
                             ),
@@ -138,29 +139,33 @@ class _PrintDataState extends State<PrintData> {
                               width: 200,
                               height: 40,
                               alignment: pw.Alignment.centerLeft,
-                              padding: const pw.EdgeInsets.all(5),
-                              // color: Colors.grey[200],
-                              child:
-                                  pw.Text(widget.items[index].price.toString()),
-                            ),
-                            pw.Container(
-                              width: 200,
-                              height: 40,
-                              alignment: pw.Alignment.centerLeft,
-                              padding: const pw.EdgeInsets.all(5),
+                              // padding: const pw.EdgeInsets.all(5),
                               // color: Colors.grey[200],
                               child: pw.Text(
-                                  widget.items[index].quantity.toString()),
+                                  widget.items[index].price.toString(),
+                                  style: const pw.TextStyle(fontSize: 15)),
                             ),
                             pw.Container(
                               width: 200,
                               height: 40,
                               alignment: pw.Alignment.centerLeft,
-                              padding: const pw.EdgeInsets.all(5),
+                              // padding: const pw.EdgeInsets.all(5),
                               // color: Colors.grey[200],
-                              child: pw.Text((widget.items[index].price *
-                                      widget.items[index].quantity)
-                                  .toString()),
+                              child: pw.Text(
+                                  widget.items[index].quantity.toString(),
+                                  style: const pw.TextStyle(fontSize: 15)),
+                            ),
+                            pw.Container(
+                              width: 200,
+                              height: 40,
+                              alignment: pw.Alignment.centerLeft,
+                              // padding: const pw.EdgeInsets.all(5),
+                              // color: Colors.grey[200],
+                              child: pw.Text(
+                                  (widget.items[index].price *
+                                          widget.items[index].quantity)
+                                      .toString(),
+                                  style: const pw.TextStyle(fontSize: 15)),
                             ),
                           ],
                         ),
@@ -186,55 +191,62 @@ class _PrintDataState extends State<PrintData> {
                   ),
                   children: [
                     pw.Container(
-                      // width: 200,
-                      // height: 40,
+                      width: 200,
+                      height: 40,
                       alignment: pw.Alignment.centerLeft,
                       // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
-                      child: pw.Text(widget.items.length.toString()),
+                      child: pw.Text(widget.items.length.toString(),
+                          style: const pw.TextStyle(fontSize: 15)),
                     ),
                     pw.SizedBox(width: 10),
                     // pw.Text(widget.items[index].items),
                     pw.Container(
-                      // width: 200,
-                      // height: 40,
+                      width: 200,
+                      height: 40,
                       alignment: pw.Alignment.centerLeft,
                       // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
                       child: pw.Text(".............."),
                     ),
                     pw.Container(
-                      // width: 200,
-                      // height: 40,
+                      width: 200,
+                      height: 40,
                       alignment: pw.Alignment.centerLeft,
-                      // padding: const pw.EdgeInsets.all(5),
+                      padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
-                      child: pw.Text(widget.items
-                          .map((e) => e.price)
-                          .reduce((value, element) => value + element)
-                          .toString()),
+                      child: pw.Text(
+                          widget.items
+                              .map((e) => e.price)
+                              .reduce((value, element) => value + element)
+                              .toString(),
+                          style: const pw.TextStyle(fontSize: 15)),
                     ),
                     pw.Container(
-                      // width: 200,
-                      // height: 40,
+                      width: 200,
+                      height: 40,
                       alignment: pw.Alignment.centerLeft,
                       // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
-                      child: pw.Text(widget.items
-                          .map((e) => e.quantity)
-                          .reduce((value, element) => value + element)
-                          .toString()),
+                      child: pw.Text(
+                          widget.items
+                              .map((e) => e.quantity)
+                              .reduce((value, element) => value + element)
+                              .toString(),
+                          style: const pw.TextStyle(fontSize: 15)),
                     ),
                     pw.Container(
-                      // width: 200,
-                      // height: 40,
+                      width: 200,
+                      height: 40,
                       alignment: pw.Alignment.centerLeft,
                       // padding: const pw.EdgeInsets.all(5),
                       // color: Colors.grey[200],
-                      child: pw.Text(widget.items
-                          .map((e) => e.price * e.quantity)
-                          .reduce((value, element) => value + element)
-                          .toString()),
+                      child: pw.Text(
+                          widget.items
+                              .map((e) => e.price * e.quantity)
+                              .reduce((value, element) => value + element)
+                              .toString(),
+                          style: const pw.TextStyle(fontSize: 10)),
                     ),
                   ],
                 ),
@@ -286,6 +298,7 @@ class _PrintDataState extends State<PrintData> {
           "A3": PdfPageFormat.a3,
           "Letter": PdfPageFormat.letter,
           "A4": PdfPageFormat.a4,
+          "A5": PdfPageFormat.a5,
         },
         build: (format) => _generatePdf(format, "title"),
       ),
